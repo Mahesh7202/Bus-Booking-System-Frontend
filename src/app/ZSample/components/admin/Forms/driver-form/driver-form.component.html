@@ -1,0 +1,61 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col text-center">
+      <h2>{{ isEditMode ? 'Edit Driver' : 'Add Driver' }}</h2>
+    </div>
+  </div>
+
+  <form [formGroup]="driverForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" class="form-control" id="firstName" formControlName="firstName">
+          <div class="text-danger" *ngIf="driverForm.get('firstName')?.touched && driverForm.get('firstName')?.hasError('required')">
+            First Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" class="form-control" id="lastName" formControlName="lastName">
+          <div class="text-danger" *ngIf="driverForm.get('lastName')?.touched && driverForm.get('lastName')?.hasError('required')">
+            Last Name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="contactNumber">Contact Number</label>
+          <input type="text" class="form-control" id="contactNumber" formControlName="contactNumber">
+          <div class="text-danger" *ngIf="driverForm.get('contactNumber')?.touched && driverForm.get('contactNumber')?.hasError('required')">
+            Contact Number is required.
+          </div>
+          <div class="text-danger" *ngIf="driverForm.get('contactNumber')?.touched && driverForm.get('contactNumber')?.hasError('pattern')">
+            Contact Number should be 10 digits.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="licenseNumber">License Number</label>
+          <input type="text" class="form-control" id="licenseNumber" formControlName="licenseNumber">
+          <div class="text-danger" *ngIf="driverForm.get('licenseNumber')?.touched && driverForm.get('licenseNumber')?.hasError('required')">
+            License Number is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col text-center">
+        <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Submit' }}</button>
+      </div>
+    </div>
+  </form>
+
+
+
+</div>

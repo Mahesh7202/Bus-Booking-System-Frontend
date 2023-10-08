@@ -1,0 +1,206 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col text-center">
+      <h2>{{ isEditMode ? "Edit Passenger" : "Add Passenger" }}</h2>
+    </div>
+  </div>
+
+  <form [formGroup]="passengerForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="firstName"
+            formControlName="firstName"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('firstName')?.touched &&
+              passengerForm.get('firstName')?.hasError('required')
+            "
+          >
+            First Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastName"
+            formControlName="lastName"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('lastName')?.touched &&
+              passengerForm.get('lastName')?.hasError('required')
+            "
+          >
+            Last Name is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="age">Age</label>
+          <input
+            type="number"
+            class="form-control"
+            id="age"
+            formControlName="age"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('age')?.touched &&
+              passengerForm.get('age')?.hasError('required')
+            "
+          >
+            Age is required.
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('age')?.touched &&
+              passengerForm.get('age')?.hasError('min')
+            "
+          >
+            Age should be greater than or equal to 1.
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('age')?.touched &&
+              passengerForm.get('age')?.hasError('max')
+            "
+          >
+            Age should be less than or equal to 99.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Gender</label>
+          <div>
+            <div class="btn-group" data-toggle="buttons">
+              <label
+                class="btn btn-primary"
+                [class.active]="
+                  passengerForm.controls['gender'].value === 'male'
+                "
+              >
+                <input type="radio" formControlName="gender" value="male" />
+                Male
+              </label>
+              <label
+                class="btn btn-primary"
+                [class.active]="
+                  passengerForm.controls['gender'].value === 'female'
+                "
+              >
+                <input type="radio" formControlName="gender" value="female" />
+                Female
+              </label>
+              <label
+                class="btn btn-primary"
+                [class.active]="
+                  passengerForm.controls['gender'].value === 'other'
+                "
+              >
+                <input type="radio" formControlName="gender" value="other" />
+                Other
+              </label>
+            </div>
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('gender')?.touched &&
+              passengerForm.get('gender')?.hasError('required')
+            "
+          >
+            Gender is required.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            formControlName="email"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('email')?.touched &&
+              passengerForm.get('email')?.hasError('required')
+            "
+          >
+            Email is required.
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('email')?.touched &&
+              passengerForm.get('email')?.hasError('email')
+            "
+          >
+            Please enter a valid email address.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="contactNumber">Contact Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="contactNumber"
+            formControlName="contactNumber"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('contactNumber')?.touched &&
+              passengerForm.get('contactNumber')?.hasError('required')
+            "
+          >
+            Contact Number is required.
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="
+              passengerForm.get('contactNumber')?.touched &&
+              passengerForm.get('contactNumber')?.hasError('pattern')
+            "
+          >
+            Contact Number should be 10 digits.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col text-center">
+        <button type="submit" class="btn btn-primary">
+          {{ isEditMode ? "Update" : "Submit" }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

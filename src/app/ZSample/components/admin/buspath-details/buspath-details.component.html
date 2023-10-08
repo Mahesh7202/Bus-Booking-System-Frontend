@@ -1,0 +1,12 @@
+<app-admin-table-layout
+  [title]="'BusPath'"
+  [items]="buspaths"
+  [columns]="columns"
+  [sortable]="true"
+  [itemsPerPage]="10"
+  [currentPage]="1"
+  [editFunction]="editFunction"
+  [deleteItemEvent]="deleteItemEvent"
+  *ngIf="dataLoaded"
+></app-admin-table-layout>
+

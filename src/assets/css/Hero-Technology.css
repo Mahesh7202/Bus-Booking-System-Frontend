@@ -1,0 +1,69 @@
+/* Reset default margin and padding for all elements */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Apply a background color to the entire page */
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style the header area */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style the main content area */
+.main-content {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Apply jumbotron styles for the hero section */
+div.jumbotron.hero-technology {
+  color: #fff;
+  text-align: center;
+  background: url('../../assets/img/b22.png');
+  background-size: cover;
+  background-position: center;
+  padding-top: 150px;
+  padding-bottom: 500px;
+}
+
+h1.hero-title,
+h2.hero-title,
+h3.hero-title {
+  text-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-weight: 500;
+}
+
+p.hero-subtitle {
+  max-width: 500px;
+  margin: 25px auto;
+  padding: 10px 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.7);
+  font-weight: 500;
+}
+
+/* Style the footer area */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Add additional styles for graphics, links, etc. */

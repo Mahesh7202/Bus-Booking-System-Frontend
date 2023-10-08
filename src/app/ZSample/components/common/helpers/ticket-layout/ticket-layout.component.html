@@ -1,0 +1,37 @@
+<ul class="nav nav-pills">
+  <li class="nav-item" *ngFor="let item of bookingsData; let i = index">
+    <a
+      class="nav-link"
+      [class.active]="i == activeTabIndex"
+      (click)="setActiveTab(i)"
+      >TicketID-{{ item.ticketID }}</a
+    >
+  </li>
+</ul>
+<div class="tab-content">
+  <div *ngFor="let bookingData of bookingsData; let i = index">
+    <div
+      class="tab-pane"
+      [class.show]="i === activeTabIndex"
+      [id]="'tabPane' + i"
+    >
+      <div class="container">
+        <app-ticket [bookingData]="bookingData"></app-ticket>
+        <div class="ticketShadow" *ngIf="ticketDelete">
+          <div class="row">
+            <div class="text-center">
+              <button
+                type="submit"
+                (click)="deleteTicket(bookingData.ticketID)"
+                class="btn btn-danger"
+                style="margin: 5px"
+              >
+                DeleteTickets
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<!-- bus-path-form.component.html -->
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col text-center">
+      <h2>{{ isEditMode ? 'Edit Bus Path' : 'Add Bus Path' }}</h2>
+    </div>
+  </div>
+
+  <form [formGroup]="busPathForm" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="pathName">Path Name</label>
+          <input type="text" readonly class="form-control" id="pathName" formControlName="pathName">
+          <div class="text-danger" *ngIf="busPathForm.get('pathName')?.touched && busPathForm.get('pathName')?.hasError('required')">
+            Path Name is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="startingPoint">Starting Point</label>
+          <input type="text" class="form-control" id="startingPoint" formControlName="startingPoint">
+          <div class="text-danger" *ngIf="busPathForm.get('startingPoint')?.touched && busPathForm.get('startingPoint')?.hasError('required')">
+            Starting Point is required.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="endingPoint">Ending Point</label>
+          <input type="text" class="form-control" id="endingPoint" formControlName="endingPoint">
+          <div class="text-danger" *ngIf="busPathForm.get('endingPoint')?.touched && busPathForm.get('endingPoint')?.hasError('required')">
+            Ending Point is required.
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="distance">Distance</label>
+          <input type="number" class="form-control" id="distance" formControlName="distance">
+          <div class="text-danger" *ngIf="busPathForm.get('distance')?.touched && busPathForm.get('distance')?.hasError('required')">
+            Distance is required.
+          </div>
+          <div class="text-danger" *ngIf="busPathForm.get('distance')?.touched && busPathForm.get('distance')?.hasError('min')">
+            Distance should be greater than or equal to 0.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col text-center">
+        <button type="submit" class="btn btn-primary">{{ isEditMode ? 'Update' : 'Submit' }}</button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,30 @@
+<div class="container" style="height: 30px;"></div>
+
+<div class="scrollable-container" style="max-height: 100vh; overflow-y: auto">
+
+  <app-admin-table-layout
+  [title]="'Bookings'"
+  [items]="remodaledBookingData"
+  [columns]="columns"
+  [sortable]="true"
+  [itemsPerPage]="10"
+  [currentPage]="1"
+  [extra]="'More Details'"
+  (showTable) = "showTable($event)"
+  *ngIf="dataLoaded"
+></app-admin-table-layout>
+
+<app-ticket-layout *ngIf="showTickets"
+[bookingsData]="ticketData"
+></app-ticket-layout>
+
+
+
+  <div class="container" style="height: 320px;"></div>
+</div>
+
+
+
+
+
+

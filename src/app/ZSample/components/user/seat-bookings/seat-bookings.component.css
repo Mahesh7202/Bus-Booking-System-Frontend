@@ -1,0 +1,223 @@
+.seat-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+
+.button-a {
+  margin: 5px;
+  background-color: #f0f0f0;
+  font-size: 14px;
+}
+
+.occupied {
+  background-color: #4CAF50; /* Green color for booked seats */
+  color: white;
+}
+
+.green-background {
+  background-color: #4CAF50; /* Green color for the right end */
+}
+
+.label{
+  margin: 6px;
+    background-color: #766060;
+    font-size: large;
+    font-weight: 900;
+}
+
+.upper-canvas{
+  background-color: #766060;
+  border-left: #720f0f solid 10px;
+}
+
+/* Add this to your component's CSS or SCSS file */
+.scrollable-label-container {
+  width: 100%; /* Set the desired width for the label container */
+  overflow: hidden;
+}
+
+.scrollable-label {
+  width: fit-content;
+  background-color: tomato;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: scroll 10s linear infinite; /* Adjust the animation duration as needed */
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Adjust the styles as needed */
+.scrollable-label span {
+  padding: 5px;
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+
+}
+
+
+.seat, .gray{
+  fill: gray;
+  stroke: gray;
+}
+
+.green{
+  fill: green;
+  stroke: green;
+}
+
+
+.purple-seat {
+  fill: purple;
+  stroke: purple;
+}
+
+
+.red-seat {
+  fill: red;
+  stroke: red;
+}
+
+
+.gray-available{
+  background-color: gray;
+  margin: 5px;
+}
+
+.red-booked{
+  background-color: red;
+  margin: 5px;
+}
+
+.green-selected{
+  background-color: green;
+  margin: 5px;
+}
+
+.purple-selected{
+  background-color: purple;
+  margin: 5px;
+}
+
+
+
+
+.Available, .Booked, .Selected, .Pending{
+  margin: 0px;
+  font-weight: 900;
+  font-size: large;
+}
+
+
+
+.circle {
+  width: 8px;
+  height: 8px;
+  background-color: #3498db;
+  border-radius: 50%;
+}
+
+.line {
+  margin-left: 3px;
+  width: 4px;
+  height: 69px;
+  border-left: 1px dashed #3498db;
+}
+
+
+.row-1, .row-2{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+
+.heading-5{
+  width: fit-content;
+}
+
+
+
+/* Add styles for Seater and Semi-Sleeper seats as needed */
+.seatType-Seater {
+  width: 50px;
+  filter: drop-shadow(0 0 3px #00ff00);
+  transition: filter 0.5s;
+}
+
+.seatType-SemiSleeper {
+  width: 50px;
+  filter: drop-shadow(0 0 3px #00ff00);
+  transition: filter 0.5s;
+}
+
+
+
+
+.btn-proceed{
+  width: 100%;
+  height: 100%;
+  background-color: #d87609;
+  color: white;
+  font-weight: bold;
+}
+
+.btn-filter-seat
+{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-around;
+}
+
+
+
+
+
+.card-header button{
+  width: 100%;
+  font-size: x-large;
+  color: #007bff;
+  text-transform: uppercase;
+
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+
+
+/* Style the card header */
+.card-header {
+  background-color: #333; /* Light dull black background color */
+  color: #007bff; /* White text color */
+  border-bottom: 3px solid;
+
+}
+
+.card-header-box{
+  font-weight: bold;
+  font-size: 20px;
+}
+.card-body{
+  background-color: #333;
+  color: #fff;
+}
+
+

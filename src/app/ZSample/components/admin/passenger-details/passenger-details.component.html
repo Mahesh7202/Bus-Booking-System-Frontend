@@ -1,0 +1,11 @@
+<app-admin-table-layout
+  [title]="'Passenger'"
+  [items]="passengers"
+  [columns]="columns"
+  [sortable]="true"
+  [itemsPerPage]="10"
+  [currentPage]="1"
+  [editFunction]="editFunction"
+  [deleteItemEvent]="deleteItemEvent"
+  *ngIf="dataLoaded"
+></app-admin-table-layout>

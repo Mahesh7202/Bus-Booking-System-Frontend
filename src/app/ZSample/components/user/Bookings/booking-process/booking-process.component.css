@@ -1,0 +1,70 @@
+.gray-available{
+  background-color: gray;
+  margin: 5px;
+}
+
+.red-booked{
+  background-color: red;
+  margin: 5px;
+}
+
+.green-selected{
+  background-color: green;
+  margin: 5px;
+}
+
+
+.Available, .Booked, .Selected{
+  margin: 0px;
+  font-weight: 900;
+  font-size: large;
+}
+
+.card-title{
+   background-color: orange;
+    width: fit-content;
+    padding: 4px;
+    color: white
+}
+
+
+
+.card-form{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin: 5px;
+}
+
+.card-header button{
+  width: 100%;
+  font-size: x-large;
+  color: #007bff;
+  text-transform: uppercase;
+
+
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: row;
+}
+
+
+
+
+
+/* Style the card header */
+.card-header {
+background-color: #333; /* Light dull black background color */
+color: #007bff; /* White text color */
+border-bottom: 3px solid;
+
+}
+
+.card-body{
+background-color: #333;
+color: #fff;
+}
+

@@ -1,0 +1,97 @@
+<div class="container-fluid gradient-background">
+  <div class="container mt-4 main-section">
+    <div class="header-section">
+      <h1>Welcome to Ride to Home</h1>
+      <p>Find the perfect bus for your journey!</p>
+    </div>
+    
+
+    <div class="container search-btn-section">
+      <!-- "Start Journey" button -->
+      <button
+        class="btn btn-primary start-journey"
+        (click)="showForm = true"
+        *ngIf="!showForm"
+      >
+        Start Journey
+      </button>
+    </div>
+
+    <div class="card card-section" style="border-radius: 70px !important;" *ngIf="showForm">
+      <div class="card-body card-body-section">
+
+        <div class="title">
+          <h2>Start Your Journey</h2> <!-- Add a title here -->
+
+        </div>
+
+        <form [formGroup]="searchBusesForm" class="row no-gutters rounded-form p-0 bg-light" (ngSubmit)="searchBuses()">
+          <div class="col-md-4 p-0">
+            <div class="form-group rounded-l w-100 h-100">
+              <input
+                type="text"
+                class="form-control h-100 input-s rounded-l"
+                id="source"
+                formControlName="source"
+                placeholder="Enter Source"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-4 p-0">
+            <div class="form-group w-100 h-100">
+              <input
+                type="text"
+                class="form-control h-100 input-s"
+                id="destination"
+                formControlName="destination"
+                placeholder="Enter Destination"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-3 pr-0">
+            <div class="form-group w-100 h-100">
+              <input
+                type="date"
+                class="form-control h-100 input-s"
+                id="onDate"
+                formControlName="onDate"
+              />
+            </div>
+          </div>
+
+          <div class="col-md-1">
+            <div class="form-group w-100 h-100">
+              <button class="btn btn-primary rounded-r w-100 h-100" type="submit">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6"></div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-4" *ngFor="let path of paths">
+      <div class="card mb-3">
+        <img src='{{path.imageURL}}' alt="Image" class="card-img-top" />
+        <div class="card-body text-center">
+          <h5 class="card-title font-weight-bold">{{ path.pathName }}</h5>
+          <p class="card-text">
+            <strong>Starting Point:</strong> {{ path.startingPoint }}<br />
+            <strong>Ending Point:</strong> {{ path.endingPoint }}<br />
+            <strong>Distance:</strong> {{ path.distance }} km
+          </p>
+          <a href="#" class="btn btn-primary btn-block font-weight-bold">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

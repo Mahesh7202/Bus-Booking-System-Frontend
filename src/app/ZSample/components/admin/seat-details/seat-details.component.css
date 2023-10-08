@@ -1,0 +1,25 @@
+/* Style the tab navigation */
+.nav-pills .nav-item {
+  margin-right: 10px; /* Adjust spacing between tab items */
+}
+
+/* Style the active tab */
+.nav-pills .nav-item .nav-link.active {
+  background-color: #007bff; /* Change the background color of the active tab */
+  color: #fff; /* Change the text color of the active tab */
+}
+
+/* Style the tab content container */
+.tab-content {
+  padding: 20px; /* Add padding to the tab content */
+  border: 1px solid #ccc; /* Add a border to separate tab content */
+}
+
+/* Style the individual tab panes */
+.tab-pane {
+  display: none; /* Hide all tab panes by default */
+}
+
+.tab-pane.show {
+  display: block; /* Display the active tab pane */
+}

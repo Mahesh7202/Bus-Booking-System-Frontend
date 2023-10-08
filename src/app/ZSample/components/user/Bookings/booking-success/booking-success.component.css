@@ -1,0 +1,42 @@
+.section{
+  width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.header{
+  background-color: #007bff;
+    color: white;
+    margin: 9px;
+}
+
+.confirmation-message{
+  color: green;
+    font-size: 25px;
+    font-weight: 900;
+}
+
+
+.centered-image{
+  display: flex;
+  align-items: center;
+   justify-content: center;
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover{
+  background-color: rgb(143, 142, 142);
+
+}
+
+
+.carousel-control-prev-icon, .carousel-control-next-icon{
+  width: 58px;
+  height: 100%;
+}
+
+

@@ -1,0 +1,128 @@
+<div class="container" style="width: 500px; height: 250px; padding: 15px">
+  <div
+    class="row"
+    style="height: 16.666666%; justify-content: flex-end"
+    *ngFor="let row of [0, 1]"
+  >
+    <div class="col p-0" *ngFor="let col of lowerSeatsOrder.lower[row]">
+      <svg
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+        viewBox="0 0 500.000000 500.000000"
+        transform="rotate(270)"
+        preserveAspectRatio="xMidYMid meet"
+        (click)="toggleSeatState(col, 'L')"
+        [attr.id]="'S_L' + col.seatNumber"
+        [ngClass]="{
+          seat: true,
+          green: checkSeats(col.seatNumber, 'L'),
+          gray: !checkSeats(col.seatNumber, 'L'),
+          'seatType-Seater':
+            selectedSeatType === 'Seater' && col.seatType === 'Seater',
+          'seatType-SemiSleeper':
+            selectedSeatType === 'Semi-Sleeper' &&
+            col.seatType === 'Semi-Sleeper',
+          'purple-seat': col.status === 'pending',
+          'red-seat': col.status === 'booked',
+          'green-available': col.status == 'available'
+
+        }"
+      >
+        <g
+          transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+          stroke="none"
+        >
+          <path
+            d="M2305 3939 c-242 -11 -529 -50 -769 -105 -120 -27 -168 -48 -206 -89
+l-25 -27 -3 -243 -3 -244 28 -7 c91 -22 180 -96 222 -184 l26 -55 5 -499 5
+-499 50 -17 c42 -14 54 -15 75 -5 38 20 108 37 180 45 47 5 110 1 230 -16 308
+-44 505 -42 800 8 110 19 135 20 207 9 45 -6 108 -21 141 -33 57 -20 60 -20
+105 -3 l47 18 0 488 c0 455 1 492 19 539 36 95 123 174 219 200 l42 11 0 212
+c0 117 -4 229 -9 250 -19 82 -76 111 -326 162 -222 46 -444 73 -680 84 -110 5
+-207 9 -215 8 -8 -1 -83 -5 -165 -8z"
+          />
+          <path
+            d="M1135 2939 c-21 -18 -39 -46 -45 -70 -7 -26 -10 -247 -8 -662 l3
+-622 23 -47 c13 -25 37 -57 55 -70 45 -35 201 -99 358 -149 74 -23 138 -49
+143 -57 24 -41 84 -94 132 -118 102 -50 547 -100 784 -88 278 14 525 49 610
+85 31 13 71 44 109 85 34 35 68 64 77 64 27 0 286 91 369 130 87 41 124 74
+152 135 17 37 18 88 21 658 2 397 -1 631 -7 655 -16 58 -60 94 -122 100 -65 6
+-108 -15 -138 -68 -21 -37 -21 -45 -21 -549 l0 -512 -57 -26 c-32 -14 -118
+-45 -191 -70 l-133 -44 -52 25 c-78 38 -127 41 -274 17 -286 -46 -561 -47
+-849 -2 -145 23 -201 19 -281 -20 l-42 -20 -83 25 c-46 14 -131 45 -190 68
+l-108 43 0 514 c0 502 0 514 -21 551 -28 49 -66 70 -128 70 -42 0 -56 -5 -86
+-31z"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="row" style="height: 16.666666%; justify-content: flex-end">
+    <div class="col-1 p-0"></div>
+  </div>
+  <div class="row" style="height: 16.666666%; justify-content: flex-end">
+    <div class="col-1 p-0"></div>
+  </div>
+  <div
+    class="row"
+    style="height: 16.666666%; justify-content: flex-end"
+    *ngFor="let row of [2, 3]"
+  >
+    <div class="col p-0" *ngFor="let col of lowerSeatsOrder.lower[row]">
+      <svg
+        version="1.0"
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        height="100%"
+        viewBox="0 0 500.000000 500.000000"
+        transform="rotate(270)"
+        preserveAspectRatio="xMidYMid meet"
+        (click)="toggleSeatState(col, 'L')"
+        [attr.id]="'S_L' + col.seatNumber"
+        [ngClass]="{
+          seat: true,
+          green: checkSeats(col.seatNumber, 'L'),
+          gray: !checkSeats(col.seatNumber, 'L'),
+          'seatType-Seater':
+            selectedSeatType === 'Seater' && col.seatType === 'Seater',
+          'seatType-SemiSleeper':
+            selectedSeatType === 'Semi-Sleeper' &&
+            col.seatType === 'Semi-Sleeper',
+          'purple-seat': col.status === 'pending',
+          'red-seat': col.status === 'booked',
+          'green-available': col.status == 'available'
+
+        }"
+      >
+        <g
+          transform="translate(0.000000,500.000000) scale(0.100000,-0.100000)"
+          stroke="none"
+        >
+          <path
+            d="M2305 3939 c-242 -11 -529 -50 -769 -105 -120 -27 -168 -48 -206 -89
+l-25 -27 -3 -243 -3 -244 28 -7 c91 -22 180 -96 222 -184 l26 -55 5 -499 5
+-499 50 -17 c42 -14 54 -15 75 -5 38 20 108 37 180 45 47 5 110 1 230 -16 308
+-44 505 -42 800 8 110 19 135 20 207 9 45 -6 108 -21 141 -33 57 -20 60 -20
+105 -3 l47 18 0 488 c0 455 1 492 19 539 36 95 123 174 219 200 l42 11 0 212
+c0 117 -4 229 -9 250 -19 82 -76 111 -326 162 -222 46 -444 73 -680 84 -110 5
+-207 9 -215 8 -8 -1 -83 -5 -165 -8z"
+          />
+          <path
+            d="M1135 2939 c-21 -18 -39 -46 -45 -70 -7 -26 -10 -247 -8 -662 l3
+-622 23 -47 c13 -25 37 -57 55 -70 45 -35 201 -99 358 -149 74 -23 138 -49
+143 -57 24 -41 84 -94 132 -118 102 -50 547 -100 784 -88 278 14 525 49 610
+85 31 13 71 44 109 85 34 35 68 64 77 64 27 0 286 91 369 130 87 41 124 74
+152 135 17 37 18 88 21 658 2 397 -1 631 -7 655 -16 58 -60 94 -122 100 -65 6
+-108 -15 -138 -68 -21 -37 -21 -45 -21 -549 l0 -512 -57 -26 c-32 -14 -118
+-45 -191 -70 l-133 -44 -52 25 c-78 38 -127 41 -274 17 -286 -46 -561 -47
+-849 -2 -145 23 -201 19 -281 -20 l-42 -20 -83 25 c-46 14 -131 45 -190 68
+l-108 43 0 514 c0 502 0 514 -21 551 -28 49 -66 70 -128 70 -42 0 -56 -5 -86
+-31z"
+          />
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+/* Set a fixed width for the container */
+.table-container {
+  width: 100%; /* Adjust the width as needed */
+  overflow-x: auto; /* Enable horizontal scrolling */
+}
+
+/* Ensure the table header stays at the top when scrolling vertically */
+.table-container table thead {
+  position: sticky;
+  top: 0;
+  background-color: #fff; /* Optional: Set a background color for the header */
+}
+
+
+.fixed-width-column {
+  width: 100px; /* Adjust the width as needed */
+  /* You can also use 'min-width' to ensure the column doesn't become narrower */
+  /* min-width: 100px; */
+}

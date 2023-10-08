@@ -1,0 +1,104 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col text-center">
+      <h2>Check the Status of Seats in Particular Buses</h2>
+    </div>
+  </div>
+
+  <form (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+      <div class="col">
+        <div class="form-group">
+          <label for="pathID">Select Bus Route</label>
+          <select
+            class="form-control"
+            id="pathID"
+            [(ngModel)]="selectedPathNameBasedID"
+            name="pathID"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="onPathChange()"
+          >
+            <option disabled selected>Select Bus Route</option>
+            <option *ngFor="let path of busPaths" [value]="path.pathID">
+              {{ path.pathName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="form-group">
+          <label for="busID">Select Bus</label>
+          <select
+            class="form-control"
+            id="busID"
+            [(ngModel)]="selectedBus"
+            name="busID"
+            [ngModelOptions]="{ standalone: true }"
+            (ngModelChange)="onBusChange()"
+          >
+            <option disabled selected>Select Bus</option>
+            <option *ngFor="let bus of uniqueBuses" [value]="bus.busID">
+              {{ bus.licensePlate }} - [ {{ bus.model }} ({{ bus.type }}) ]
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col">
+        <h4>Bus Timeings</h4>
+        <div class="form-check" *ngFor="let item of busTimings; let i = index">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            [(ngModel)]="selectedCheckboxes[i]"
+            [name]="'checkbox' + (i + 1)"
+            [id]="'checkbox' + (i + 1)"
+            [value]="item.scheduleID"
+            (ngModelChange)="OnBusTimingsSelected(item.scheduleID)"
+          />
+          <label [for]="'checkbox' + (i + 1)" class="form-check-label"
+            >{{ helperService.formatDateTime(item.departureTime) }} -
+            {{ helperService.formatDateTime(item.arrivalTime) }}</label
+          >
+        </div>
+      </div>
+    </div>
+
+
+  </form>
+
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li class="nav-item" *ngFor="let item of scheduleIDs; let i = index">
+        <a
+          class="nav-link"
+          [class.active]="i == activeTabIndex"
+          (click)="setActiveTab(i)"
+          >{{ item.busTitle }}</a
+        >
+      </li>
+    </ul>
+    <div class="tab-content">
+      <ng-container *ngFor="let scheduleID of scheduleIDs; let i = index">
+        <div class="tab-pane" [class.show]="i === activeTabIndex" [id]="'tabPane' + i">
+          <div class="container">
+            <app-seat-layout
+              [busID]="selectedBus"
+              [scheduleID]="scheduleID.id"
+              [fareAmount]="fareAmount"
+            ></app-seat-layout>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+

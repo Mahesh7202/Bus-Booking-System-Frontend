@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="ticketContainer" style="width: 90vw !important;">
+    <div class="ticket" style="width: 70%;">
+      <div class="ticketTitle row bg-dark ">
+        <div class="header row text-white">
+          <div class="logo col-6 font-weight-bold">RideToHome</div>
+          <div class="col-6" style="display: flex; justify-content: flex-end; ">
+            {{ bookingData.pathName.toUpperCase() }}
+          </div>
+        </div>
+      </div>
+      <div class="ticketDetail row bg-dark row">
+        <div class="col-md-7">
+          <div class="bus-details">
+            <div class="row">
+              <div class="col">
+                {{ bookingData.startingPoint }}
+              </div>
+
+              <div class="col">
+                {{ helperService.formatDateTime(bookingData.arrivalTime) }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{ bookingData.destinationPoint }}
+              </div>
+
+              <div class="col">
+                {{ helperService.formatDateTime(bookingData.departureTime) }}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{ bookingData.busLicensePlate }}
+              </div>
+
+              <div class="col">
+                {{ bookingData.modal }} ( {{ bookingData.type }} )
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <div class="passenger-details">
+            <div class="row">
+              <div class="col">{{ bookingData.seatNumber }}</div>
+            </div>
+            <div class="row">
+              <div class="col">{{ bookingData.name.toUpperCase() }}</div>
+            </div>
+            <div class="row">
+              <div class="col">{{ bookingData.email }}</div>
+            </div>
+            <div class="row">
+              <div class="col">{{ bookingData.phoneNumber }}</div>
+            </div>
+            <div class="row">
+              <div class="col">
+                {{ bookingData.age }}
+                {{ bookingData.gender.toUpperCase() }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row p-0">
+        <div class="ticketRip p-0 bg-dark">
+          <div class="circleLeft "></div>
+          <div class="ripLine"></div>
+          <div class="circleRight"></div>
+        </div>
+      </div>
+
+      <div class="ticketSubDetail row bg-dark">
+        <div class="code col-4">
+          TicketID-
+          {{ bookingData.ticketID }}
+        </div>
+        <div class="col-4 text-center">
+         Booked At: {{  helperService.formatDateTime(bookingData.bookingTime) }}
+        </div>
+        <div class="date col-4" style="display: flex; justify-content: flex-end;">INR: {{ bookingData.seatAmount }}</div>
+      </div>
+    </div>
+  </div>
+</div>

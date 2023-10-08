@@ -1,0 +1,111 @@
+/* styles.css */
+.logo {
+  display: flex;
+  justify-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.circle-logo {
+  width: 200px;
+  height: 200px;
+  background-color: #333;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+.container-fluid {
+  padding: 0;
+}
+
+.sidebar {
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 56px;
+  background-color: #007bff;
+  color: #007bff;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar .nav-link {
+  color: #007bff;
+}
+
+.sidebar .nav-link i {
+  margin-right: 8px;
+}
+
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+  background-color: #f4f4f4;
+}
+
+.header-section {
+  background-color: #f6eeee;
+  color: #007bff;
+  text-align: center;
+  padding: 16px;
+}
+
+.sidebar .nav-item {
+  text-transform: uppercase;
+}
+
+
+
+/* Styling for Sidebar Links */
+.sidebar .nav-link:hover {
+  background-color: #444;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+/* Styling for Active Sidebar Link */
+.sidebar .nav-link.active {
+  background-color: #555;
+}
+
+/* Add this class to the active route in the sidebar */
+.active-link {
+  background-color: #555;
+}
+
+/* Styling for hr Line with Middle Shape */
+hr.middle-shape {
+  border: none;
+  background: #333;
+  height: 2px;
+  margin: 20px 0;
+}
+
+.diamond {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-bottom-color: #333;
+  position: relative;
+  top: -25px;
+}
+
+.main-content-align {
+  margin-left: 70px;
+}

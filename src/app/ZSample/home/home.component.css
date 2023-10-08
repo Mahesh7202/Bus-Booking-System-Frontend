@@ -1,0 +1,197 @@
+/* Apply gradient background to the entire section */
+.gradient-background {
+  height: 50%;
+  background-image: url("../../../assets/bus.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 20px;
+
+}
+
+.title{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-content: center;
+  justify-content: center;
+
+}
+
+.title h2{
+  text-align: left;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 900;
+}
+
+.start-journey{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+
+
+  font-size: xxx-large;
+  width: 50%;
+  height: 86px;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: 900;
+
+}
+
+
+.card-section{
+  background-color: #5b8cc2;
+  padding: 25px;
+  height: 250px;
+}
+
+
+.card-body-section{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.main-section{
+  display: flex;
+    height: 700px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-around;
+}
+
+.search-btn-section{
+  display: flex;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Style the header section */
+.header-section h1, .header-section p{
+  text-align: left;
+  text-transform: uppercase;
+  color: #007bff;
+  font-weight: 900;
+}
+
+.card-title{
+  text-transform: uppercase;
+  color: #007bff;
+  font-weight: 900;
+}
+
+
+
+
+.header-section
+{
+  color: #333;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.styled-line {
+  position: relative;
+  height: 2px;
+  background-color: #000;
+  margin: 20px 0;
+}
+
+.diamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+}
+
+form {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+/* Style input boxes */
+.form-control {
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Style search button */
+.btn-primary {
+  background-color: #4a90e2;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Style suggestions list */
+.suggestions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+.suggestions li {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #f2f2f2;
+}
+
+/* Style card and button in bus details section */
+.card {
+  border-radius: 10px;
+}
+
+.btn-rounded-0 {
+  border-radius: 50px;
+}
+
+.input-s {
+  padding-left: 58px;
+  font-size: xx-large;
+}
+
+.rounded-l {
+  border-top-left-radius: 60px;
+  border-bottom-left-radius: 60px;
+}
+
+.rounded-r {
+  border-top-right-radius: 60px;
+  border-bottom-right-radius: 60px;
+}
+
+.rounded-form {
+  border-radius: 60px;
+}

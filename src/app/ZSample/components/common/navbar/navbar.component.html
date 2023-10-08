@@ -1,0 +1,99 @@
+ <nav
+      class="navbar navbar-dark navbar-expand-md"
+      style="padding: 20px 0; font-size: 18px"
+    >
+      <div class="container-fluid">
+        <a class="navbar-brand" routerLink="">RideToHome.com</a>
+
+        <div class="collapse navbar-collapse" id="navcol-1" style="justify-content: flex-end;">
+          <ul [hidden]="isAdmin" class="nav navbar-nav ml-auto">
+            <!-- Other menu items here -->
+
+            <!-- ContactUs Link -->
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                [routerLink]="['/ContactUs']"
+                style="font-size: 24px"
+                >Contact</a
+              >
+            </li>
+
+            <!-- Signup/Login Dropdown -->
+            <li class="nav-item dropdown" style="margin-right: 170px;">
+              <a
+                class="nav-link active dropdown-toggle"
+                id="accountDropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                style="font-size: 24px"
+              >
+                <i class="fas fa-user"></i> Account
+              </a>
+
+
+              
+              <div class="dropdown-menu" aria-labelledby="accountDropdown">
+                <a class="dropdown-item" [routerLink]="['user/bus-ticket-book/cancel-ticket']"
+                  >Cancel Ticket</a
+                >
+                <a class="dropdown-item" [routerLink]="['user/bus-ticket-book/show-tickets']"
+                  >Show My Tickets</a
+                >
+                <hr class="dropdown-divider" />
+                <a [hidden]="isLoggedIn" class="dropdown-item" [routerLink]="['/login']"
+                  >Login/Signup</a
+                >
+                <!-- Logout Link -->
+                <a
+                  [hidden]="!isLoggedIn"
+                  class="dropdown-item"
+                  (click)="Logout()"
+                  >Logout</a>
+              </div>
+            </li>
+
+
+
+
+
+          </ul>
+
+
+
+          <ul [hidden]="!isAdmin" class="nav navbar-nav ml-auto">
+            <!-- Signup/Login Dropdown -->
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link active dropdown-toggle"
+                id="accountDropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                style="font-size: 24px"
+              >
+              <i class="fas fa-user"></i> Account
+            </a>
+            <div class="dropdown-menu" aria-labelledby="accountDropdown">
+
+              <hr class="dropdown-divider" />
+              <a [hidden]="isLoggedIn" class="dropdown-item" [routerLink]="['/login']"
+                >Start Booking</a
+              >
+              <!-- Logout Link -->
+              <a
+                class="dropdown-item"
+                (click)="Logout()"
+                >Logout</a>
+            </div>
+          </li>
+
+
+
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+

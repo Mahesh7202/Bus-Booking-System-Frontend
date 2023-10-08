@@ -1,0 +1,57 @@
+<div class="container section" *ngIf="dataLoaded">
+  <div class="container-header">
+    <div class="row text-center">
+      <h1 class="header">Ride To Home</h1>
+    </div>
+    <div class="centered-image">
+      <img
+        src="https://cdn3.iconfinder.com/data/icons/social-messaging-ui-color-line/254000/39-512.png"
+        alt="Confirmation Image"
+        style="width: 40%; height: 100%"
+      />
+    </div>
+    <div class="row text-center">
+      <p class="confirmation-message">
+        You'r Booking was Successfully completed!
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div id="couponCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div
+          class="carousel-item"
+          *ngFor="let bookingData of remodaledBookingData; let i = index"
+          [class.active]="i === 0"
+        >
+          <div class="card">
+            <div class="card-body">
+              <app-ticket [bookingData]="bookingData"></app-ticket>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a
+        class="carousel-control-prev"
+        href="#couponCarousel"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#couponCarousel"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4"></div>

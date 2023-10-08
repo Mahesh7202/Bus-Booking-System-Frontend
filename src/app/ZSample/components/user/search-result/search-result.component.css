@@ -1,0 +1,111 @@
+/* CSS classes for bus details */
+.bus-details {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.bus-details-heading {
+  font-size: 13px;
+  color: #007bff;
+  text-transform: uppercase;
+  border-bottom: 2px solid #007bff; /* Add a 1px solid gray underline */
+  margin: 0px;/* Small font size for headings */
+}
+
+.bus-details-value {
+  font-size: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0px;
+}
+
+
+.licensePlate{
+  background-color: white;
+  color: #007bff;
+  font-size: 13px;
+  font-weight: 900;
+  border-radius: 5px;
+  margin: 2px;
+  margin-top: 7px;
+}
+
+.seat-details{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.seat-details p{
+  font-size: 23px;
+  margin: 0px;
+
+}
+
+.color{
+  color: #6480ef;
+
+}
+
+
+.styled-line {
+  position: relative;
+  height: 2px;
+  background-color: #6480ef;
+  margin: 20px 0;
+}
+
+.diamond {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 20px;
+  height: 20px;
+  background-color: #627fec;
+}
+
+
+.status-section{
+  justify-content: center;
+}
+
+.status{
+  width: fit-content;
+  border-radius: 35px;
+}
+
+.status h6{
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+.card{
+  background-color: #0f0f0fd4;
+  border-radius: 30px;
+  color: #fff;
+}
+
+
+.status-green {
+  background-color: green;
+  color: white; /* Add text color for better readability */
+}
+
+.status-violet {
+  background-color: violet;
+  color: white;
+}
+
+.status-red {
+  background-color: red;
+  color: white;
+}

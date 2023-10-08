@@ -1,0 +1,13 @@
+.save-seats{
+  display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.button{
+  margin: 10px;
+}

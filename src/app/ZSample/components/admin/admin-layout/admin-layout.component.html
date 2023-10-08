@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row h-100">
+    <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+      <nav class="navbar navbar-expand-lg logo navbar-dark bg-dark">
+        <a class="navbar-brand p-0 m-0" href="#">
+          <div class="circle-logo">
+            A
+          </div>
+        </a>
+      </nav>
+      <div class="position-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['booking-details']">
+              <i class="bi bi-calendar"></i> Bookings
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['driver-details']">
+              <i class="bi bi-person"></i> Driver
+            </a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['bus-details']">
+              <i class="bi bi-geo-alt"></i> Bus Details
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['buspath-details']">
+              <i class="bi bi-geo-alt"></i> Routes
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['user-details']">
+              <i class="bi bi-person"></i> Users
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['seat-details']">
+              <i class="bi bi-calendar"></i> Seats
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['passenger-details']">
+              <i class="bi bi-person"></i> Passengers
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="col-md-10 ml-sm-auto col-lg-10 px-4">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,385 @@
+<div class="container mt-4">
+  <div class="row mb-3">
+    <div class="col text-center">
+      <h2>{{ isEditMode ? "Edit Bus Details" : "Add Bus Details" }}</h2>
+    </div>
+  </div>
+
+  <div class="scrollable-container" style="max-height: 100vh; overflow-y: auto">
+    <form [formGroup]="combinedFormGroup" (ngSubmit)="onSubmit()">
+      <!-- Section 1: Bus Details -->
+
+      <div formGroupName="busForm">
+        <!-- ... Your Bus Details form controls ... -->
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="licensePlate">License Plate</label>
+              <input
+                type="text"
+                class="form-control"
+                id="licensePlate"
+                formControlName="licensePlate"
+              />
+
+              <div *ngIf="busForm.get('licensePlate')?.touched && busForm.get('licensePlate')?.hasError('required')" class="text-danger">
+                License Plate is required.
+              </div>
+              <div *ngIf="busForm.get('licensePlate')?.touched && busForm.get('licensePlate')?.hasError('maxlength')" class="text-danger">
+                License Plate should be less than 10 characters.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="model">Model</label>
+              <input
+                type="text"
+                class="form-control"
+                id="model"
+                formControlName="model"
+              />
+              <div *ngIf="busForm.get('model')?.touched && busForm.get('model')?.hasError('required')" class="text-danger">
+                Model is required.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="currentLocation">Current Location</label>
+              <select
+                class="form-control"
+                id="currentLocation"
+                formControlName="currentLocation"
+              >
+                <option value="">Select Location</option>
+                <option *ngFor="let location of locations" [value]="location">
+                  {{ location }}
+                </option>
+              </select>
+              <div *ngIf="busForm.get('currentLocation')?.touched && busForm.get('currentLocation')?.hasError('required')" class="text-danger">
+                Current Location is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="type">type</label>
+              <select class="form-control" id="type" formControlName="type">
+                <option value="">Select Bus Type</option>
+                <option *ngFor="let type of busTypes" [value]="type">
+                  {{ type }}
+                </option>
+              </select>
+
+              <div *ngIf="busForm.get('type')?.touched && busForm.get('type')?.hasError('required')" class="text-danger">
+                Bus Type is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="upperSeatsCount">Upper Seats Count</label>
+              <input
+                type="number"
+                class="form-control"
+                id="upperSeatsCount"
+                (input)="restrictMaxValueForUpper(busForm.get('upperSeatsCount'))"
+                formControlName="upperSeatsCount"
+              />
+              <div *ngIf="busForm.get('upperSeatsCount')?.hasError('required')" class="text-danger">
+                Upper Seats Count is required.
+              </div>
+              <div *ngIf="busForm.get('upperSeatsCount')?.hasError('min')" class="text-danger">
+                Upper Seats Count should be greater than or equal to 0.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="lowerSeatsCount">Lower Seats Count</label>
+              <input
+                type="number"
+                class="form-control"
+                id="lowerSeatsCount"
+                (input)="restrictMaxValue(busForm.get('lowerSeatsCount'))"
+                formControlName="lowerSeatsCount"
+              />
+              <div *ngIf="busForm.get('lowerSeatsCount')?.hasError('required')" class="text-danger">
+                Lower Seats Count is required.
+              </div>
+              <div *ngIf="busForm.get('lowerSeatsCount')?.hasError('min')" class="text-danger">
+                Lower Seats Count should be greater than or equal to 0.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="capacity">Capacity</label>
+              <input
+                type="number"
+                readonly
+                class="form-control"
+                id="capacity"
+                formControlName="capacity"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col text-center">
+          <h2>
+            {{
+              isEditMode
+                ? "Edit Seats Types Details"
+                : "Add Seats Types Details"
+            }}
+          </h2>
+        </div>
+      </div>
+
+      <div formGroupName="busSeatForm">
+        <!-- ... Your Bus Details form controls ... -->
+
+        <div class="row mb-5">
+          <!-- Display the stored form data as a list -->
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <ul class="list-group">
+                <li
+                  class="list-group-item"
+                  *ngFor="let dataItem of storedFormData; let i = index"
+                >
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <!-- Display the form data -->
+                    <span
+                      >{{ dataItem.seatType }} -
+                      {{ dataItem.totalSeats }} Seats</span
+                    >
+                    <!-- Add a remove icon and call a function to remove the item -->
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-danger"
+                      (click)="removeStoredFormData(i)"
+                    >
+                      <i class="fas fa-trash"></i> Remove
+                    </button>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="seatType">Seat Type</label>
+              <select
+                class="form-control"
+                id="seatType"
+                formControlName="seatType"
+              >
+                <option value="">Select Bus Seat Type</option>
+                <option *ngFor="let type of busSeatType" [value]="type">
+                  {{ type }}
+                </option>
+              </select>
+
+              <div *ngIf="busSeatForm.get('seatType')?.touched && busSeatForm.get('seatType')?.hasError('required')" class="text-danger">
+                Seat Type is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5">
+            <div class="form-group">
+              <label for="totalSeats"> Seats Count</label>
+              <input [readonly]="busSeatForm.get('seatType')?.value == '' "
+                type="number"
+                class="form-control"
+                id="totalSeats"
+                (input)="restrictMaxValueValues(busSeatForm.get('totalSeats'))"
+                formControlName="totalSeats"
+              />
+
+              <div *ngIf="busSeatForm.get('totalSeats')?.touched && busSeatForm.get('totalSeats')?.hasError('required')" class="text-danger">
+                Total Seats Count is required.
+              </div>
+              <div *ngIf="busSeatForm.get('totalSeats')?.touched && busSeatForm.get('totalSeats')?.hasError('min')" class="text-danger">
+                Total Seats Count should be greater than or equal to 0.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-2 save-seats">
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="storeFormData()"
+            >
+              Store Data
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- End of Section 1 -->
+
+      <div class="row mb-3">
+        <div class="col text-center">
+          <h2>
+            {{
+              isEditMode
+                ? "Edit Bus Assignment Details"
+                : "Add Bus Assignment Details"
+            }}
+          </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <button
+          type="button"
+          class="btn button btn-primary"
+          (click)="addScheduleForm()"
+        >
+          Add Schedule
+        </button>
+      </div>
+
+      <div *ngFor="let scheduleForm of scheduleForms; let i = index">
+        <!-- Section 2: Bus Assignment Details -->
+        <div [formGroup]="scheduleForm">
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="driverID">Assign Driver</label>
+                <select
+                  class="form-control"
+                  id="driverID"
+                  formControlName="driverID"
+                >
+                  <option value="">Select Driver</option>
+                  <option
+                    *ngFor="let driver of drivers"
+                    [value]="driver.driverID"
+                  >
+                    {{ driver.firstName }} {{ driver.lastName }}
+                  </option>
+                </select>
+                <div class="text-danger" *ngIf="scheduleForm.get('driverID')?.touched && scheduleForm.get('driverID')?.hasError('required')">
+                  Driver is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="pathID">Select Bus Route</label>
+                <select
+                  class="form-control"
+                  id="pathID"
+                  formControlName="pathID"
+                >
+                  <option value="">Select Bus Route</option>
+                  <option *ngFor="let path of busPaths" [value]="path.pathID">
+                    {{ path.pathName }}
+                  </option>
+                </select>
+                <div class="text-danger" *ngIf="scheduleForm.get('pathID')?.touched && scheduleForm.get('pathID')?.hasError('required')">
+                  Bus Route is required.
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="arrivalTime">Arrival Time</label>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="arrivalTime"
+                  formControlName="arrivalTime"
+                />
+
+                <div class="text-danger" *ngIf="scheduleForm.get('arrivalTime')?.touched && scheduleForm.get('arrivalTime')?.hasError('required')">
+                  Arrival Time is required.
+                </div>
+
+                <div class="text-danger" *ngIf="scheduleForm.get('arrivalTime')?.hasError('invalidTime')">
+                  Arrival Time cannot be less than or same as the current date and time.
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="departureTime">Departure Time</label>
+                <input
+                  type="datetime-local"
+                  class="form-control"
+                  id="departureTime"
+                  formControlName="departureTime"
+                />
+                <div class="text-danger" *ngIf="scheduleForm.get('departureTime')?.touched && scheduleForm.get('departureTime')?.hasError('required')">
+                  Departure Time is required.
+                </div>
+
+                <div class="text-danger" *ngIf="scheduleForm?.hasError('sameTime') && scheduleForm.get('arrivalTime')?.dirty && scheduleForm.get('departureTime')?.dirty">
+                  Departure and Arrival times should not be the same.
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select
+                  class="form-control"
+                  id="status"
+                  formControlName="status"
+                >
+                  <option value="Active" selected>Active</option>
+                  <option value="Delayed">Delayed</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Canceled">Canceled</option>
+                  <option value="Pending">Pending</option>
+                  <option value="On Hold">On Hold</option>
+                  <option value="Rescheduled">Rescheduled</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="btn button btn-danger"
+          (click)="removeScheduleForm(i)"
+        >
+          Remove Schedule
+        </button>
+      </div>
+      <!-- End of Section 2 -->
+
+      <div class="row mb-3">
+        <div class="col text-center">
+          <button type="submit" class="btn btn-primary">
+            {{ isEditMode ? "Update" : "Submit" }}
+          </button>
+        </div>
+      </div>
+      <div class="container" style="height: 200px;"></div>
+    </form>
+  </div>
+</div>

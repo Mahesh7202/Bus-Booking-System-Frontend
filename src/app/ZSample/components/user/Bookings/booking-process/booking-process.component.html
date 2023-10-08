@@ -1,0 +1,470 @@
+<div class="container-fluid">
+  <div class="container" style="height: 20px;"></div>
+
+  <div class="row">
+    <!-- 70% Content -->
+    <div class="col-md-8">
+      <!-- Your content for the 70% section goes here -->
+      <div class="scrollable-container" style="max-height: 100vh; overflow-y: auto;">
+        <div class="scrollable-container" style="max-height: 100vh; overflow-y: auto;">
+          <!-- First Row (Accordion 1) -->
+
+          <div class="row">
+            <div class="accordion" id="accordionContainer-passengers">
+              <div class="card">
+                <div class="card-header" id="accordionHeader1">
+                  <h5 class="mb-0">
+                    <button
+                      class="btn"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapse1"
+                      aria-expanded="true"
+                      aria-controls="collapse1"
+                    >
+                      Passengers Information
+                      <i
+                        class="fas fa-chevron-down ml-2"
+                        [ngClass]="{ 'fa-rotate-180': isAccordion1Collapsed }"
+                      ></i>
+                    </button>
+                  </h5>
+                </div>
+                <div
+                  id="collapse1"
+                  class="collapse show"
+                  aria-labelledby="accordionHeader1"
+                  data-parent="#accordionContainer-passengers"
+                >
+                  <div class="card-body">
+                    <div class="accordion" id="accordionExample">
+                      <div
+                        *ngFor="
+                          let passengerForm of passengerForms;
+                          let i = index
+                        "
+                        class="card"
+                      >
+                        <div class="card-header">
+                          <h5 class="mb-0" style="display: flex;">
+                            <button
+                              class="btn"
+                              type="button"
+                              (click)="toggleAccordion(i)"
+                              data-toggle="collapse"
+                              [attr.data-target]="'#collapseItem' + i"
+                              [attr.aria-expanded]="itemStates[i]"
+                            >
+                              Passenger({{ i + 1 }}) | SeatNo.
+                              {{ bookedSeats[i].seatNumber }}
+                            </button>
+                            <button style="width: fit-content; color: white;
+                            font-weight: bold;"
+                              class="btn btn-danger btn-sm"
+                              (click)="deleteItem(i)"
+                            >
+                              Delete
+                            </button>
+                          </h5>
+                        </div>
+                        <div
+                          [id]="'collapseItem' + i"
+                          class="collapse"
+                          [ngClass]="{ show: itemStates[i] }"
+                        >
+                          <div class="card-body">
+                            <form
+                              [formGroup]="passengerForm"
+                              (ngSubmit)="onSubmit()"
+                            >
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="firstName"
+                                      formControlName="firstName"
+                                    />
+                                    <div class="text-danger" *ngIf="passengerForm.get('firstName')?.touched && passengerForm.get('firstName')?.hasError('required')">
+                                      First Name is required.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="lastName"
+                                      formControlName="lastName"
+                                    />
+                                    <div class="text-danger" *ngIf="passengerForm.get('lastName')?.touched && passengerForm.get('lastName')?.hasError('required')">
+                                      Last Name is required.
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="age">Age</label>
+                                    <input
+                                      type="number"
+                                      class="form-control"
+                                      id="age"
+                                      formControlName="age"
+                                    />
+                                    <div class="text-danger" *ngIf="passengerForm.get('age')?.touched && passengerForm.get('age')?.hasError('required')">
+                                      Age is required.
+                                    </div>
+                                    <div class="text-danger" *ngIf="passengerForm.get('age')?.touched && passengerForm.get('age')?.hasError('min')">
+                                      Age should be a positive number.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label>Gender</label>
+                                    <div>
+                                      <div
+                                        class="btn-group"
+                                        data-toggle="buttons"
+                                      >
+                                        <label
+                                          class="btn btn-primary"
+                                          [class.active]="
+                                            passengerForm.controls['gender']
+                                              .value === 'male'
+                                          "
+                                        >
+                                          <input
+                                            type="radio"
+                                            formControlName="gender"
+                                            value="male"
+                                          />
+                                          Male
+                                        </label>
+                                        <label
+                                          class="btn btn-primary"
+                                          [class.active]="
+                                            passengerForm.controls['gender']
+                                              .value === 'female'
+                                          "
+                                        >
+                                          <input
+                                            type="radio"
+                                            formControlName="gender"
+                                            value="female"
+                                          />
+                                          Female
+                                        </label>
+                                        <label
+                                          class="btn btn-primary"
+                                          [class.active]="
+                                            passengerForm.controls['gender']
+                                              .value === 'other'
+                                          "
+                                        >
+                                          <input
+                                            type="radio"
+                                            formControlName="gender"
+                                            value="other"
+                                          />
+                                          Other
+                                        </label>
+
+
+                                      </div>
+                                    </div>
+
+                                    <div class="text-danger" *ngIf="passengerForm.get('gender')?.touched && passengerForm.get('gender')?.hasError('required')">
+                                      Gender is required.
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row mb-3">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input
+                                      type="email"
+                                      class="form-control"
+                                      id="email"
+                                      formControlName="email"
+                                    />
+
+                                    <div class="text-danger" *ngIf="passengerForm.get('email')?.touched && passengerForm.get('email')?.hasError('required')">
+                                      Email is required.
+                                    </div>
+                                    <div class="text-danger" *ngIf="passengerForm.get('email')?.touched && passengerForm.get('email')?.hasError('email')">
+                                      Please enter a valid email address.
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label for="contactNumber"
+                                      >Contact Number</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="contactNumber"
+                                      formControlName="contactNumber"
+                                    />
+                                    <div class="text-danger" *ngIf="passengerForm.get('contactNumber')?.touched && passengerForm.get('contactNumber')?.hasError('pattern')">
+                                      Contact Number should be 10 digits.
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Second Row (Accordion 2) -->
+          <div class="row mt-2">
+            <div class="accordion" id="accordionContainer">
+              <div class="card">
+                <div class="card-header" id="accordionHeader2">
+                  <h5 class="mb-0">
+                    <button
+                      class="btn"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#collapse2"
+                      aria-expanded="true"
+                      aria-controls="collapse2"
+                    >
+                      Credit Card Details
+                      <i
+                        class="fas fa-chevron-down ml-2"
+                        [ngClass]="{ 'fa-rotate-180': isAccordion2Collapsed }"
+                      ></i>
+                    </button>
+                  </h5>
+                </div>
+                <div
+                  id="collapse2"
+                  class="collapse"
+                  aria-labelledby="accordionHeader2"
+                  data-parent="#accordionContainer"
+                >
+                  <div class="card-body">
+                    <form [formGroup]="creditCardForm" (ngSubmit)="onSubmit()">
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label for="cardHolderFullName"
+                              >Cardholder's Full Name</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cardHolderFullName"
+                              formControlName="cardHolderFullName"
+                            />
+
+                            <div class="text-danger" *ngIf="creditCardForm.get('cardHolderFullName')?.touched && creditCardForm.get('cardHolderFullName')?.hasError('required')">
+                              Cardholder's Full Name is required.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="cardNumber">Card Number</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cardNumber"
+                              (input)="onCardNumberInput($event)"
+
+                              formControlName="cardNumber"
+                            />
+                            <div class="text-danger" *ngIf="creditCardForm.get('cardNumber')?.touched && creditCardForm.get('cardNumber')?.hasError('required')">
+                              Card Number is required.
+                            </div>
+                            <div class="text-danger" *ngIf="creditCardForm.get('cardNumber')?.touched && creditCardForm.get('cardNumber')?.hasError('pattern')">
+                              Please enter a valid 16-digit card number.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="expireYear">Expiration Year</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="expireYear"
+                              formControlName="expireYear"
+                            />
+                            <div class="text-danger" *ngIf="creditCardForm.get('expireYear')?.touched && creditCardForm.get('expireYear')?.hasError('required')">
+                              Expiration Year is required.
+                            </div>
+                            <div class="text-danger" *ngIf="creditCardForm.get('expireYear')?.touched && creditCardForm.get('expireYear')?.hasError('pattern')">
+                              Please enter a valid 4-digit expiration year.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="expireMonth">Expiration Month</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="expireMonth"
+                              formControlName="expireMonth"
+                            />
+                            <div class="text-danger" *ngIf="creditCardForm.get('expireMonth')?.touched && creditCardForm.get('expireMonth')?.hasError('required')">
+                              Expiration Month is required.
+                            </div>
+                            <div class="text-danger" *ngIf="creditCardForm.get('expireMonth')?.touched && creditCardForm.get('expireMonth')?.hasError('pattern')">
+                              Please enter a valid 2-digit expiration month.
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="cvc">CVC</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="cvc"
+                              formControlName="cvc"
+                            />
+                            <div class="text-danger" *ngIf="creditCardForm.get('cvc')?.touched && creditCardForm.get('cvc')?.hasError('required')">
+                              CVC is required.
+                            </div>
+                            <div class="text-danger" *ngIf="creditCardForm.get('cvc')?.touched && creditCardForm.get('cvc')?.hasError('pattern')">
+                              Please enter a valid 3-digit CVC.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Third Row -->
+          <div class="row mt-2">
+            <div class="col">
+              <div class="card">
+                <div class="card-header">
+                  <h5>Contact Details</h5>
+                </div>
+
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Your Ticket will be sent to these details
+                  </h5>
+
+                  <form [formGroup]="ticketDetailsForm">
+                    <div class="form-group">
+                      <label for="name">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="name"
+                        formControlName="name"
+                      />
+                      <div class="text-danger" *ngIf="ticketDetailsForm.get('name')?.touched && ticketDetailsForm.get('name')?.hasError('required')">
+                        Name is required.
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="emailID">EmailID</label>
+                      <input
+                        type="emailID"
+                        class="form-control"
+                        id="emailID"
+                        formControlName="emailID"
+                      />
+                      <div class="text-danger" *ngIf="ticketDetailsForm.get('emailID')?.touched && ticketDetailsForm.get('emailID')?.hasError('required')">
+                        Email ID is required.
+                      </div>
+                      <div class="text-danger" *ngIf="ticketDetailsForm.get('emailID')?.touched && ticketDetailsForm.get('emailID')?.hasError('email')">
+                        Please enter a valid email address.
+                      </div>
+
+                    </div>
+
+                  </form>
+
+                  <div class="form-check">
+                    <input
+                      type="checkbox"
+                      class="form-check-input"
+                      id="sendCopy"
+                      formControlName="sendCopy"
+                      (change)="toggleSendCopy()"
+                      />
+                    <label class="form-check-label" for="sendCopy"
+                      >Send a copy of the ticket to the passengers
+                      individually</label
+                    >
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4th Row -->
+          <div class="row mt-2">
+            <div class="card-form">
+              <div class="col-6">
+                <h5>
+                  Total Amount: <span> INR {{ getTotalAmount() }}</span>
+                </h5>
+              </div>
+              <div class="col-6">
+                <button type="submit" class="w-100 btn btn-primary" (click)="onSubmit()">
+                  Proceed the Payment
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container" style="height: 200px;"></div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 30% Content -->
+    <div class="col-md-4">
+      <div class="container" style="height: 20px;"></div>
+      <!-- Your content for the 30% section goes here -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">30% Content</h5>
+          <p class="card-text">This is the smaller section with 30% width.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,353 @@
+<div class="container-fluid">
+  <div class="container-fluid search-area">
+    <form [formGroup]="searchBusesForm" (ngSubmit)="onSubmit()">
+      <div class="row mt-1">
+        <div class="col-3">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              [readOnly]="!isEditable"
+              id="source"
+              placeholder="Enter Source"
+              formControlName="source"
+            />
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <input
+              type="text"
+              class="form-control"
+              [readOnly]="!isEditable"
+              id="destination"
+              placeholder="Enter Destination"
+              formControlName="destination"
+            />
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="form-group">
+            <input
+              type="date"
+              class="form-control"
+              [readOnly]="!isEditable"
+              id="OnDate"
+              formControlName="onDate"
+            />
+          </div>
+        </div>
+        <div class="col-3">
+          <button class="btn btn-primary" type="submit">
+            {{ isEditable ? "Search" : "Modify" }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="container-fluid">
+    <div class="row h-100">
+      <!-- Sidebar (30%) -->
+      <div
+        class="col-md-3 bg-light scrollable-container sidebar"
+        style="height: 100vh; overflow-y: auto"
+      >
+        <!-- Modal Accordion -->
+        <div class="accordion" id="modalAccordion">
+          <div class="card">
+            <div class="card-header" id="modalHeader">
+              <h2 class="mb-0">
+                Modal
+                <i
+                  class="fas fa-chevron-down"
+                  data-toggle="collapse"
+                  style="font-size: x-large;"
+                  data-target="#modalCollapse"
+                  aria-expanded="true"
+                  aria-controls="modalCollapse"
+                ></i>
+              </h2>
+            </div>
+
+            <div
+              id="modalCollapse"
+              class="collapse show"
+              aria-labelledby="modalHeader"
+              data-parent="#modalAccordion"
+            >
+              <div class="card-body">
+                <!-- Modal Filter Input -->
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  placeholder="Filter by Modal"
+                  [(ngModel)]="filterModal"
+                />
+
+                <!-- Checkbox List for Modal -->
+                <div
+                  *ngFor="
+                    let modal of distinctModals | modalFilter : filterModal
+                  "
+                >
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="modal"
+                      id="modal{{ modal }}"
+                      (change)="updateFilterModal(modal)"
+                    />
+                    <label class="form-check-label" for="modal{{ modal }}">
+                      {{ modal }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bus Type Accordion -->
+        <div class="accordion" id="busTypeAccordion">
+          <div class="card">
+            <div class="card-header" id="busTypeHeader">
+              <h2 class="mb-0">
+                Bus Type
+                <i
+                  class="fas fa-chevron-down"
+                  data-toggle="collapse"
+                  style="font-size: x-large;"
+                  data-target="#busTypeCollapse"
+                  aria-expanded="true"
+                  aria-controls="busTypeCollapse"
+                ></i>
+              </h2>
+            </div>
+
+            <div
+              id="busTypeCollapse"
+              class="collapse show"
+              aria-labelledby="busTypeHeader"
+              data-parent="#busTypeAccordion"
+            >
+              <div class="card-body">
+                <!-- Bus Type Filter Input -->
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  placeholder="Filter by Bus Type"
+                  [(ngModel)]="filterBusType"
+                />
+
+                <!-- Checkbox List for Bus Type -->
+                <div
+                  *ngFor="
+                    let busType of distinctBusTypes
+                      | busTypeFilter : filterBusType
+                  "
+                >
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="busType"
+                      id="busType{{ busType }}"
+                      (change)="updateFilterBusType(busType)"
+                    />
+                    <label class="form-check-label" for="busType{{ busType }}">
+                      {{ busType }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Driver Accordion -->
+        <div class="accordion" id="driverAccordion">
+          <div class="card">
+            <div class="card-header" id="driverHeader">
+              <h2 class="mb-0">
+                Driver<i
+                  class="fas fa-chevron-down"
+                  data-toggle="collapse"
+                  style="font-size: x-large;"
+                  data-target="#driverCollapse"
+                  aria-expanded="true"
+                  aria-controls="driverCollapse"
+                ></i>
+              </h2>
+            </div>
+
+            <div
+              id="driverCollapse"
+              class="collapse show"
+              aria-labelledby="driverHeader"
+              data-parent="#driverAccordion"
+            >
+              <div class="card-body">
+                <!-- Driver Filter Input -->
+                <input
+                  type="text"
+                  class="form-control mb-3"
+                  placeholder="Filter by Driver Name"
+                  [(ngModel)]="filterDriverName"
+                />
+
+                <!-- Checkbox List for Drivers -->
+                <div
+                  *ngFor="
+                    let driver of driversData
+                      | driverNameFilter : filterDriverName
+                  "
+                >
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="driver"
+                      id="driver{{ driver.driverID }}"
+                      (change)="updateFilterDriver(driver)"
+                    />
+                    <label
+                      class="form-check-label"
+                      for="driver{{ driver.driverID }}"
+                    >
+                      {{ driver.firstName }} {{ driver.lastName }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Departure Time Accordion -->
+        <div class="accordion" id="departureTimeAccordion">
+          <div class="card">
+            <div class="card-header" id="departureTimeHeader">
+              <h2 class="mb-0">
+                Departure Time
+                <i
+                  class="fas fa-chevron-down"
+                  data-toggle="collapse"
+                  style="font-size: x-large;"
+                  data-target="#departureTimeCollapse"
+                  aria-expanded="true"
+                  aria-controls="departureTimeCollapse"
+                ></i>
+              </h2>
+            </div>
+
+            <div
+              id="departureTimeCollapse"
+              class="collapse show"
+              aria-labelledby="departureTimeHeader"
+              data-parent="#departureTimeAccordion"
+            >
+              <div class="card-body">
+                <!-- Checkbox List for Departure Time Categories -->
+                <div *ngFor="let category of departureTimeCategories">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="category.value"
+                      id="departureTime{{ category.value }}"
+                      (change)="updateFilterDepartureTime(category.value)"
+                    />
+                    <label
+                      class="form-check-label"
+                      for="departureTime{{ category.value }}"
+                    >
+                      {{ category.label }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrival Time Accordion -->
+        <div class="accordion" id="arrivalTimeAccordion">
+          <div class="card">
+            <div class="card-header" id="arrivalTimeHeader">
+              <h2 class="mb-0">
+                Arrival Time
+                <i
+                  class="fas fa-chevron-down"
+                  data-toggle="collapse"
+                  style="font-size: x-large;"
+                  data-target="#arrivalTimeCollapse"
+                  aria-expanded="true"
+                  aria-controls="arrivalTimeCollapse"
+                ></i>
+              </h2>
+            </div>
+
+            <div
+              id="arrivalTimeCollapse"
+              class="collapse show"
+              aria-labelledby="arrivalTimeHeader"
+              data-parent="#arrivalTimeAccordion"
+            >
+              <div class="card-body">
+                <!-- Checkbox List for Arrival Time Categories -->
+                <div *ngFor="let category of arrivalTimeCategories">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      [value]="category.value"
+                      id="arrivalTime{{ category.value }}"
+                      (change)="updateFilterArrivalTime(category.value)"
+                    />
+                    <label
+                      class="form-check-label"
+                      for="arrivalTime{{ category.value }}"
+                    >
+                      {{ category.label }}
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Section (70%) -->
+      <div class="col-md-9">
+        <div
+          class="scrollable-container"
+          style="height: 100vh; overflow-y: auto"
+          *ngIf="dataLoaded"
+        >
+          <!-- Loop through the bus data array -->
+          <app-search-result
+            *ngFor="
+              let busData of busDataArray.schedule
+                | multiFilter
+                  : {
+                      modals: filterModals,
+                      driverNames: filterDriverNames,
+                      busTypes: filterBusTypes,
+                      departureTime: filterDerivedTime,
+                      arrivalTime: filterArrivalTime
+                    }
+            "
+            [busPaths]="busPaths"
+            [busData]="busData"
+          ></app-search-result>
+
+          <div class="container" style="height: 200px"></div>
+        </div>
+        <!-- Content for the main section goes here -->
+      </div>
+    </div>
+  </div>
+</div>

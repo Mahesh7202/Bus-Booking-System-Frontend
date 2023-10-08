@@ -1,0 +1,28 @@
+<app-admin-table-layout
+  [title]="'Bus'"
+  [items]="busesAssign"
+  [columns]="columns"
+  [sortable]="true"
+  [itemsPerPage]="10"
+  [currentPage]="1"
+  [extra]="'schedule'"
+  (showTable) = "showTable($event)"
+  [editFunction]="editFunction"
+  [deleteItemEvent]="deleteItemEvent"
+  [schedulesFunction]="schedulesFunction"
+  *ngIf="dataLoaded"
+></app-admin-table-layout>
+
+
+
+<app-admin-table-layout *ngIf="showScheduleTable"
+  [title]="'Schedule'"
+  [items]="scheduleAssign"
+  [columns]="scheduleColumns"
+  [sortable]="true"
+  [itemsPerPage]="10"
+  [currentPage]="1"
+  [editFunction]="editFunction"
+  [deleteItemEvent]="deleteItemEventForSchedule"
+></app-admin-table-layout>
+

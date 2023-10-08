@@ -1,0 +1,68 @@
+Highlight color for active links
+.nav-item.active a {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  .dropdown-item:hover {
+    background-color: #6a9ed2;
+  }
+
+
+  nav{
+    background-color: #007bff;
+  }
+
+  .nav-link {
+    text-decoration: none;
+  }
+
+  .nav-item{
+    margin-right: 40px;
+
+  }
+
+  /* Style the dropdown container */
+.dropdown-menu {
+  background-color: #ffffff; /* Background color */
+  border: 1px solid #ccc; /* Border */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Box shadow */
+}
+
+/* Style dropdown items */
+.dropdown-item {
+  width: 220px;
+  color: #333; /* Text color */
+  padding: 10px 20px; /* Padding around each item */
+  font-size: 24px; /* Font size */
+  text-decoration: none; /* Remove underlines from links */
+  display: flex; /* Make items block-level elements */
+  justify-content: center;
+  align-items: center;
+
+}
+
+/* Hover effect for dropdown items */
+.dropdown-item:hover {
+  background-color: #f0f0f0; /* Background color on hover */
+}
+
+/* Style the divider line */
+.dropdown-divider {
+  border-top: 1px solid #ccc; /* Divider line */
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+}
+
+/* Customize the dropdown toggle button (if needed) */
+.dropdown-toggle {
+  border-radius: 4px; /* Rounded corners */
+  padding: 10px 20px; /* Padding for the toggle button */
+  font-size: 16px; /* Font size for the toggle button */
+}
+
+/* Hover effect for the dropdown toggle button (if needed) */
+.dropdown-toggle:hover {
+  background-color: #f0f0f05e; /* Background color on hover */
+}
